@@ -110,8 +110,8 @@ function playGame(playerMove) {
   function updateScoreElement() {
     document.querySelector('.score').innerHTML =` 
       <h3> Score Board </h3>
-      <p>Wins: ${score.wins} </p> 
-      <p>Losses: ${score.looses}</p> 
+      <p>Your Score: ${score.wins}</p> 
+      <p>Computer Score: ${score.looses}</p> 
       <p>Ties: ${score.ties}</p>
       <p class='agreggate'> ${leading}</p>
     `;
@@ -122,28 +122,28 @@ function playGame(playerMove) {
   document.querySelector('.result').innerHTML = result;
   document.querySelector('.move').innerHTML =`
     <span class='myMove'>
-      You <img src="${playerMove}-emoji.png" alt="${playerMove}">
+      <img src="${playerMove}-emoji.png" alt="${playerMove}"> You
     </span>
     <span class='cmpMove'> 
-      Computer <img src="${computerMove}-emoji.png" alt="${computerMove}">
+      <img src="${computerMove}-emoji.png" alt="${computerMove}"> Computer
     </span>
   `;
   updateScoreElement();
 }
 
-const fetchResult = JSON.parse(localStorage.getItem('score'));
-let fetchLead = sessionStorage.getItem('lead');
+const fetchScore = JSON.parse(localStorage.getItem('score'));
+let lead = sessionStorage.getItem('lead');
 
-if (!fetchLead) {
-  fetchLead = 'loading...';
+if (!lead) {
+  lead = 'fetching...';
 }
 
 document.querySelector('.score').innerHTML =` 
   <h3> Score Board </h3>
-  <p>Wins: ${fetchResult.wins} </p> 
-  <p>Losses: ${fetchResult.looses} </p> 
-  <p>Ties: ${fetchResult.ties} </p>
-  <p class='agreggate'> ${fetchLead} </p>
+  <p>Your Score: ${fetchScore.wins}</p> 
+  <p>Computer Score: ${fetchScore.looses}</p> 
+  <p>Ties: ${fetchScore.ties}</p>
+  <p class='agreggate'> ${lead}</p>
 `;
 
 console.log(crypto.randomUUID());
